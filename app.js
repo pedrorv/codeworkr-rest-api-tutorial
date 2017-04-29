@@ -1,17 +1,15 @@
 const express = require('express')
 const logger = require('morgan')
 
+const users = require('./routes/users')
+
 const app = express()
 
 // Middlewares
 app.use(logger('dev'))
 
 // Routes
-app.get('/', (req, res, next) => {
-  res.status(200).json({
-    message: 'You requested index page'
-  })
-})
+app.use('/users', users)
 
 // Catch 404 Errors and forward them to error handler
 app.use((req, res, next) => {
