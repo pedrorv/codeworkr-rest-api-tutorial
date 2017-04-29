@@ -1,11 +1,11 @@
 const express = require('express')
 const logger = require('morgan')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
+mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost:27017/codeworkr-rest-api', () => {
-  console.log('Connected to mongodb.')
-
-  mongoose.Promise = global.Promise
+  console.log('Connected to mongodb.')  
 })
 
 const users = require('./routes/users')
@@ -14,6 +14,8 @@ const app = express()
 
 // Middlewares
 app.use(logger('dev'))
+app.use(bodyParser.json())
+
 
 // Routes
 app.use('/users', users)

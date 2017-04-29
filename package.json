@@ -4,7 +4,9 @@
   "main": "app.js",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "express-promise-router": "^1.1.1",
     "mongoose": "^4.9.6",
     "morgan": "^1.8.1"
   }
