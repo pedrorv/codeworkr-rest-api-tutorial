@@ -1,0 +1,10 @@
+{
+  "name": "codeworkr-rest-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  }
+}
