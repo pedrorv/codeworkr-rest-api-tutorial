@@ -11,12 +11,30 @@ router.route('/')
 
 router.route('/:id')
   .get(validateParam(schemas.idSchema, 'id'), usersController.getUser)
-  .put(usersController.replaceUser)
-  .patch(usersController.updateUser)
+  .put(
+    [
+      validateParam(schemas.idSchema, 'id'),
+      validateBody(schemas.userSchema)
+    ],
+    usersController.replaceUser
+  )
+  .patch(
+    [
+      validateParam(schemas.idSchema, 'id'),
+      validateBody(schemas.userOptionalSchema)
+    ], 
+    usersController.updateUser
+  )
   .delete(usersController.deleteUser)
 
 router.route('/:id/cars')
-  .get(usersController.getUserCars)
-  .post(usersController.newUserCar)
+  .get(validateParam(schemas.idSchema, 'id'), usersController.getUserCars)
+  .post(
+    [
+      validateParam(schemas.idSchema, 'id'),
+      validateBody(schemas.carSchema)
+    ],
+    usersController.newUserCar
+  )
 
 module.exports = router

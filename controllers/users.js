@@ -23,25 +23,25 @@ module.exports = {
   },
 
   replaceUser: async (req, res, next) => {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body)
+    const user = await User.findByIdAndUpdate(req.value.params.id, req.value.body)
 
     res.status(200).json(user)
   },
 
   updateUser: async (req, res, next) => {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body)
+    const user = await User.findByIdAndUpdate(req.value.params.id, req.value.body)
 
     res.status(200).json(user)
   },
 
   deleteUser: async (req, res, next) => {
-    const user = await User.findByIdAndRemove(req.params.id)
+    const user = await User.findByIdAndRemove(req.value.params.id)
 
     res.status(200).json(user)
   },
 
   getUserCars: async (req, res, next) => {
-    const user = await User.findById(req.params.id).populate({
+    const user = await User.findById(req.value.params.id).populate({
       path: 'cars',
       ref: 'car',
       select: 'model make year -_id'
@@ -51,10 +51,10 @@ module.exports = {
   },
 
   newUserCar: async (req, res, next) => {
-    const newCar = new Car(req.body)
-    newCar.seller = await User.findById(req.params.id)
+    const newCar = new Car(req.value.body)
+    newCar.seller = await User.findById(req.value.params.id)
     await newCar.save()
-    const user = await User.findByIdAndUpdate(req.params.id, {
+    const user = await User.findByIdAndUpdate(req.value.params.id, {
       $push: { cars: newCar }
     })
     

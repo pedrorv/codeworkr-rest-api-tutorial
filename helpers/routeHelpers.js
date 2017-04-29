@@ -39,6 +39,18 @@ module.exports = {
       email: Joi.string().email().required()
     }),
 
+    userOptionalSchema: Joi.object().keys({
+      firstName: Joi.string(),
+      lastName: Joi.string(),
+      email: Joi.string().email()
+    }),
+
+    carSchema: Joi.object().keys({
+      make: Joi.string().required(),
+      model: Joi.string().required(),
+      year: Joi.number().required()
+    }),
+
     idSchema: Joi.object().keys({
       param: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
     })
