@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Car = require('../models/car')
 
 module.exports = {
   index: async (req, res, next) => {
@@ -36,5 +37,26 @@ module.exports = {
     const user = await User.findByIdAndRemove(req.params.id)
 
     res.status(200).json(user)
+  },
+
+  getUserCars: async (req, res, next) => {
+    const user = await User.findById(req.params.id).populate({
+      path: 'cars',
+      ref: 'car',
+      select: 'model make year -_id'
+    })
+
+    res.status(200).json(user.cars)
+  },
+
+  newUserCar: async (req, res, next) => {
+    const newCar = new Car(req.body)
+    newCar.seller = await User.findById(req.params.id)
+    await newCar.save()
+    const user = await User.findByIdAndUpdate(req.params.id, {
+      $push: { cars: newCar }
+    })
+    
+    res.status(200).json(newCar)
   }
 }

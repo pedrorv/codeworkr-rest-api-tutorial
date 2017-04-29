@@ -14,4 +14,8 @@ router.route('/:id')
   .patch(usersController.updateUser)
   .delete(usersController.deleteUser)
 
+router.route('/:id/cars')
+  .get(usersController.getUserCars)
+  .post(usersController.newUserCar)
+
 module.exports = router
