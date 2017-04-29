@@ -25,7 +25,7 @@ router.route('/:id')
     ], 
     usersController.updateUser
   )
-  .delete(usersController.deleteUser)
+  .delete(validateParam(schemas.idSchema, 'id'), usersController.deleteUser)
 
 router.route('/:id/cars')
   .get(validateParam(schemas.idSchema, 'id'), usersController.getUserCars)
