@@ -1,5 +1,12 @@
 const express = require('express')
 const logger = require('morgan')
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://localhost:27017/codeworkr-rest-api', () => {
+  console.log('Connected to mongodb.')
+
+  mongoose.Promise = global.Promise
+})
 
 const users = require('./routes/users')
 
