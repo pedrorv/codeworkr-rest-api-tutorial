@@ -3,11 +3,11 @@ const express = require('express')
 const router = require('express-promise-router')()
 
 const usersController = require('../controllers/users')
-const { validateParam, schemas } = require('../helpers/routeHelpers')
+const { validateParam, validateBody, schemas } = require('../helpers/routeHelpers')
 
 router.route('/')
   .get(usersController.index)
-  .post(usersController.newUser)
+  .post(validateBody(schemas.userSchema), usersController.newUser)
 
 router.route('/:id')
   .get(validateParam(schemas.idSchema, 'id'), usersController.getUser)
