@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const Car = require('../models/car')
 
+
 module.exports = {
   index: async (req, res, next) => {
     const users = await User.find({})
@@ -16,7 +17,7 @@ module.exports = {
   },
 
   getUser: async (req, res, next) => {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.value.params.id)
 
     res.status(200).json(user)
   },

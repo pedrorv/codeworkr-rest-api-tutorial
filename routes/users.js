@@ -3,13 +3,14 @@ const express = require('express')
 const router = require('express-promise-router')()
 
 const usersController = require('../controllers/users')
+const { validateParam, schemas } = require('../helpers/routeHelpers')
 
 router.route('/')
   .get(usersController.index)
   .post(usersController.newUser)
 
 router.route('/:id')
-  .get(usersController.getUser)
+  .get(validateParam(schemas.idSchema, 'id'), usersController.getUser)
   .put(usersController.replaceUser)
   .patch(usersController.updateUser)
   .delete(usersController.deleteUser)
