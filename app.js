@@ -9,6 +9,7 @@ mongoose.connect('mongodb://localhost:27017/codeworkr-rest-api', () => {
 })
 
 const users = require('./routes/users')
+const cars = require('./routes/cars')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json())
 
 
 // Routes
+app.use('/cars', cars)
 app.use('/users', users)
 
 // Catch 404 Errors and forward them to error handler
