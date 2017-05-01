@@ -34,5 +34,11 @@ module.exports = {
     const car = await Car.findByIdAndUpdate(req.value.params.id, req.value.body)
 
     res.status(200).json(car)
+  },
+
+  updateCar: async (req, res, next) => {
+    const car = await Car.findByIdAndUpdate(req.value.params.id, req.value.body)
+
+    res.status(200).json(car)
   }
 }

@@ -58,6 +58,18 @@ module.exports = {
       seller: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
     }),
 
+    putCarSchema: Joi.object().keys({
+      make: Joi.string().required(),
+      model: Joi.string().required(),
+      year: Joi.number().required()
+    }),
+
+    patchCarSchema: Joi.object().keys({
+      make: Joi.string(),
+      model: Joi.string(),
+      year: Joi.number()
+    }),
+
     idSchema: Joi.object().keys({
       param: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
     })
