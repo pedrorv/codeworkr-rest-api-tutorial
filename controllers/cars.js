@@ -44,6 +44,9 @@ module.exports = {
 
   deleteCar: async (req, res, next) => {
     const car = await Car.findByIdAndRemove(req.value.params.id)
+    if (!car) {
+      return res.status(404).json({ error: "Car doesn't exist." })
+    }
 
     const user = await User.findById(car.seller)
     user.cars.pull(car)
