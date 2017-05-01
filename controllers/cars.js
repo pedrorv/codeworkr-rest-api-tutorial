@@ -33,12 +33,22 @@ module.exports = {
   replaceCar: async (req, res, next) => {
     const car = await Car.findByIdAndUpdate(req.value.params.id, req.value.body)
 
-    res.status(200).json(car)
+    res.status(200).json({ success: true })
   },
 
   updateCar: async (req, res, next) => {
     const car = await Car.findByIdAndUpdate(req.value.params.id, req.value.body)
 
-    res.status(200).json(car)
+    res.status(200).json({ success: true })
+  },
+
+  deleteCar: async (req, res, next) => {
+    const car = await Car.findByIdAndRemove(req.value.params.id)
+
+    const user = await User.findById(car.seller)
+    user.cars.pull(car)
+    await user.save()
+
+    res.status(200).json({ success: true })
   }
 }

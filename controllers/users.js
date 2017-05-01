@@ -25,19 +25,19 @@ module.exports = {
   replaceUser: async (req, res, next) => {
     const user = await User.findByIdAndUpdate(req.value.params.id, req.value.body)
 
-    res.status(200).json(user)
+    res.status(200).json({ success: true })
   },
 
   updateUser: async (req, res, next) => {
     const user = await User.findByIdAndUpdate(req.value.params.id, req.value.body)
 
-    res.status(200).json(user)
+    res.status(200).json({ success: true })
   },
 
   deleteUser: async (req, res, next) => {
     const user = await User.findByIdAndRemove(req.value.params.id)
 
-    res.status(200).json(user)
+    res.status(200).json({ success: true })
   },
 
   getUserCars: async (req, res, next) => {
