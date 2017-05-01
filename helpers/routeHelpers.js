@@ -51,6 +51,13 @@ module.exports = {
       year: Joi.number().required()
     }),
 
+    newCarSchema: Joi.object().keys({
+      make: Joi.string().required(),
+      model: Joi.string().required(),
+      year: Joi.number().required(),
+      seller: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+    }),
+
     idSchema: Joi.object().keys({
       param: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
     })

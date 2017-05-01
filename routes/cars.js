@@ -9,5 +9,6 @@ const {
 
 router.route('/')
   .get(carsController.index)
+  .post(validateBody(schemas.newCarSchema), carsController.newCar)
 
 module.exports = router
