@@ -32,7 +32,7 @@ router.route('/:id/cars')
   .post(
     [
       validateParam(schemas.idSchema, 'id'),
-      validateBody(schemas.carSchema)
+      validateBody(schemas.userCarSchema)
     ],
     usersController.newUserCar
   )

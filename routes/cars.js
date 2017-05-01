@@ -9,6 +9,16 @@ const {
 
 router.route('/')
   .get(carsController.index)
-  .post(validateBody(schemas.newCarSchema), carsController.newCar)
+  .post(validateBody(schemas.carSchema), carsController.newCar)
+
+router.route('/:id')
+  .get(validateParam(schemas.idSchema, 'id'), carsController.getCar)
+  .put(
+    [
+      validateParam(schemas.idSchema, 'id'),
+      validateBody(schemas.carSchema)
+    ],
+    carsController.replaceCar
+  )
 
 module.exports = router

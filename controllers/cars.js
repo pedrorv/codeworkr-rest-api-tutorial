@@ -22,5 +22,17 @@ module.exports = {
     await seller.save()
 
     res.status(200).json(car)
+  },
+
+  getCar: async (req, res, next) => {
+    const car = await Car.findById(req.value.params.id)
+
+    res.status(200).json(car)
+  },
+
+  replaceCar: async (req, res, next) => {
+    const car = await Car.findByIdAndUpdate(req.value.params.id, req.value.body)
+
+    res.status(200).json(car)
   }
 }
